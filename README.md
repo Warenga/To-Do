@@ -6,7 +6,7 @@ A simple to do list application that allows management of tasks.
 Written in <strong>python language</strong> using <strong>flask framework</strong>. The UI is <strong>Jinja2 templates</strong> incorporated in <strong>flask twitter-bootstrap</strong>. The database is <strong>SQLAlchemy</strong> in <strong>SQlite</strong>.
 
 
-Click <a href="http://tolist-staging.herokuapp.com/"> here</a> to view the staged version. Login with twitter or signup.
+Click <a href="http://todocards.herokuapp.com/"> here</a> to view the staged version. Login with twitter or signup.
 
 
 ### What it does
@@ -39,7 +39,7 @@ Click <a href="http://tolist-staging.herokuapp.com/"> here</a> to view the stage
 Have python 2.7 or 3 installed in your machine
 
 <strong=>Clone this repository</strong>
-	https://github.com/Warenga/To-Do-List.git
+	https://github.com/Warenga/To-Do.git
 
 <strong>Create a virtualenv</strong>
 
