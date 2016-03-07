@@ -12,6 +12,7 @@ class CardForm(Form):
 
 class TaskForm(Form):
 	task = StringField('')
+	done = BooleanField('')
 	submit = SubmitField('Submit')
 
 class UserForm(Form):

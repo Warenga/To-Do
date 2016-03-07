@@ -10,7 +10,7 @@
 	<form method=post>
 	{{ form1.hidden_tag() }}
 		{{ form1.card (class_="u-full-width", placeholder="New Card", maxlength=128) }}
-		{{ form1.submit }}
+		{{ form1.submit  (class="btn btn-default") }}
 	</form>
 </div>	
 
@@ -26,14 +26,16 @@
 							<div class="decription">
 								<p> {{ card.card }} </p>
 							</div>
-							<form action="{{ url_for('main.task', id=card.id) }}"method=post>
-								{{ wtf.quick_form(task_form)}}
+							<form action="{{ url_for('main.task', id=card.id) }}"method=post style="display:inline-flex;">
+								{{ form1.hidden_tag() }}
+								{{ task_form.task (class_="u-full-width", placeholder="Add Task", maxlength=128) }}
+								{{ task_form.submit (style="height:30px; margin-left:30px; text-align: top;", class="btn btn-info") }}
 							</form>
 							{% for task in card.tasks %}
 								<form action="{{ url_for('main.delete_task', id = task.id) }}" method="post">
 									<button class="close">x</button>
 								</form>
-								<p><input class="strikethrough"  type="checkbox" value="1">{{ card.tasks }}</p>
+								<p>{{ task_form.done }}{{ card.tasks }}</p>
 							{% endfor %}
 							<div class="meta">
 								<span>

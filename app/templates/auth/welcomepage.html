@@ -21,12 +21,14 @@
 				<span class="fa fa-twitter"></span>
 						Login with Twitter
 			</a>
-			<a href="{{ url_for('auth.login') }}" class="btn btn-default">
-					Sign In
-			</a>
-			<a href="{{ url_for('auth.register') }}" class="btn btn-default" >
-					Sign Up
-			</a>
+			<div class="sign">
+				<a href="{{ url_for('auth.login') }}" class="btn btn-default">
+						Sign In
+				</a>
+				<a href="{{ url_for('auth.register') }}" class="btn btn-default" >
+						Sign Up
+				</a>
+			</div>
 		</div>
 	</div>
 {% endblock %}
