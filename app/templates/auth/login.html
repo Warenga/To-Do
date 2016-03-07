@@ -1,0 +1,62 @@
+<!-- Login Page -->
+
+{% extends "base.html" %}
+ 
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}ToDo Login{% endblock %}
+
+{% block navbar %}
+<nav class="navbar default-color">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand waves-effect waves-light" href="/index">To Do</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+        {% if current_user.is_authenticated %}    
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{{ url_for('auth.logout') }}" class="waves-effect waves-light">Sign Out</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('main.settings') }}" class="waves-effect waves-light">Settings</a>
+                </li>
+            </ul>
+        {% else %}
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{{ url_for('auth.welcome') }}">Sign In</a>
+                </li>
+            </ul>
+        {% endif %}
+
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block page_content %}
+<div class="login">
+	<div class="page-header">
+		<h2>Login</h2>
+	</div>
+	<div class="container-fluid">
+		<div class="col-xs-7 col-lg-4">
+			{{ wtf.quick_form(form) }}
+			<p>
+				New user?
+				<a href="{{ url_for('auth.register') }}">
+					Click here to register
+				</a>
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}

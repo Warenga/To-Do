@@ -1,0 +1,21 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!-- Modal Structure -->
+				<div class="modal fade" id="myModal" role="dialog">
+					<div class="modal-dialog">
+								    
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								    <h4 class="modal-title">{{ card.card }}</h4>
+							</div>
+							<div class="modal-body">
+								{{ wtf.quick_form(task_form, action=url_for('main.task', id=card.id)) }}
+							</div>
+							{% for task in tasks %}
+								<p><input class="strikethrough"  type="checkbox" value="1">{{ card.tasks }}</p>
+							{% endfor %}
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>

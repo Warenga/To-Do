@@ -1,0 +1,59 @@
+#body {
+  margin-right: 60px;
+  margin-left: 60px;
+  background-color: rgba(248, 248, 248, 1.0);
+  box-shadow: 2px 2px 2px #888888;
+  border-radius: 10px;
+  margin-bottom: 20px;
+
+}
+
+body {
+  background-image: url("images/BlurredBackground#1.jpg");
+}
+
+.login {
+	margin-top: 70px;
+	margin-left: 300px;
+}
+.strikethrough:checked + span {
+	background-color:#C0C0C0;
+    text-decoration: line-through;
+}
+
+#background {
+	
+	background-image: url("images/todo.jpg");
+	position: relative;
+	height: 100%;
+    width: 100%;
+   
+
+}
+#trial2 {
+	background-color: rgba(16,16,16, 0.3);
+	position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.welcome {
+	font-family: 'Lato', sanserif;
+	font-size: 48px;
+	text-align: left;
+	margin-left: 100px;
+	margin-right: 700px;
+	margin-top: 30px;
+	word-wrap: break-word;
+}
+
+#form1 {
+	margin-bottom: 20px;
+	margin-right: 200px;
+	margin: 10px;
+	display: inline-block;
+}
+
+
+
+

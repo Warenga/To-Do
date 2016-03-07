@@ -1,0 +1,85 @@
+<!-- The base html  -->
+
+<!-- An extension from flask-bootstrap -->
+{% extends "bootstrap/base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %} To Do {% endblock %}
+
+<!-- Contains additional css ontop of flask-bootstrap -->
+{% block styles %}
+{{ super() }} 
+	<link href="{{ url_for('static', filename = 'css/stylesheet.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename = 'css/card.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename = 'css/firstpage.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename = 'css/bootstrap-social.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename = 'css/mdb.min.css') }}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+
+{% block navbar %}
+<nav class="navbar default-color">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand waves-effect waves-light" href="/index">To Do</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+        {% if current_user.is_authenticated %}    
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{{ url_for('auth.logout') }}" class="waves-effect waves-light">Sign Out</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('main.settings') }}" class="waves-effect waves-light">Settings</a>
+                </li>
+            </ul>
+        {% else %}
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{{ url_for('auth.welcome') }}">Sign In</a>
+                </li>
+            </ul>
+        {% endif %}
+
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+
+{% block content %}
+	<div class="container-fluid" id="body">
+		{% for message in get_flashed_messages() %}
+			<div class="alert alert-warning" >
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				 {{ message }}
+			</div>
+		{% endfor %}
+
+	{% block page_content %}{% endblock %}
+	</div>
+    {% block scripts %}
+    {{ super()}}
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/masonry/3.1.5/masonry.pkgd.min.js">
+        </script>
+        <!-- MDB core JavaScript -->
+        <!-- <script type="text/javascript" src="http://mdbootstrap.com/mdbcdn/mdb.min.js"></script> -->
+        <script src="{{ url_for('static', filename='js/jquery.masonary.min.js') }}"></script> 
+        <script src="{{ url_for('static', filename='js/card.js') }}"></script> 
+        <script src="{{ url_for('static', filename='js/mdb.min.js') }}"></script> 
+    {% endblock %}
+{% endblock %}
+

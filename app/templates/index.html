@@ -1,0 +1,75 @@
+<!-- main page -->
+
+{% extends "base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block page_content %}
+<div class="form" id="form1">
+	<form method=post>
+	{{ form1.hidden_tag() }}
+		{{ form1.card (class_="u-full-width", placeholder="New Card", maxlength=128) }}
+		{{ form1.submit }}
+	</form>
+</div>	
+
+	<!-- Posts -->
+{% for card in cards %}
+	<!-- <div id="grid" class="container"> -->
+	<div class="wrapper">
+		<div id="main">
+			<div id="items" class="row-fluid">
+				<div class=" item masonry-brick">
+					<div class="picture">
+						<div class="item-content">
+							<div class="decription">
+								<p> {{ card.card }} </p>
+							</div>
+							<form action="{{ url_for('main.task', id=card.id) }}"method=post>
+								{{ wtf.quick_form(task_form)}}
+							</form>
+							{% for task in card.tasks %}
+								<form action="{{ url_for('main.delete_task', id = task.id) }}" method="post">
+									<button class="close">x</button>
+								</form>
+								<p><input class="strikethrough"  type="checkbox" value="1">{{ card.tasks }}</p>
+							{% endfor %}
+							<div class="meta">
+								<span>
+									<i class="icon-calendar"></i>
+									
+								</span>
+								<span>
+									<i class="icon-heart-empty"></i>
+									<form action="{{ url_for('main.delete_card', id = card.id) }}" method="post">
+										<button class="close">Delete</button>
+									</form>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+	{% endfor %}
+	<script type="text/javascript">
+
+		function(){
+			var data = $('input[type=checkbox]').map(function() {
+				return this.value;
+			}).get();
+			localStorage['data'] = JSON.stringify(data);
+		}
+
+		function (){
+			if(localStorage&&localStorage["data"]) {
+				var localStoredData=JSON.parse(localStorage["data"]);
+				for(var i=0;i<checkboxes.length;j++){
+					if(checkboxes[i].value==localStoredData[j]){
+						checkboxes[i].checked=true;
+					}
+				}
+			}
+			localStorage.removeItem('data')
+		}
+	</script>
+{% endblock %}

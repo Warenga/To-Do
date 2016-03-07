@@ -1,0 +1,32 @@
+<!-- Welcome page  -->
+
+{% extends "base.html" %}
+
+{% block page_content %}
+	<div class="fpage">
+		<div id="background">
+			<span id="trial2">
+				<div class="welcome">
+				<br>
+				<p><h3></h3>A To Do List Application<br> <h6><i>   simply manages your tasks</i></h6>
+				</div>
+			</span>
+		</div>
+		<div class="social">
+			<a href="{{url_for('auth.facebook_login')}}"class="btn btn-block btn-social btn-facebook">
+				<span class="fa fa-facebook"></span>
+						Login with Facebook
+			</a>
+			<a href="{{url_for('auth.twitter_login')}}" class="btn btn-block btn-social btn-twitter">
+				<span class="fa fa-twitter"></span>
+						Login with Twitter
+			</a>
+			<a href="{{ url_for('auth.login') }}" class="btn btn-default">
+					Sign In
+			</a>
+			<a href="{{ url_for('auth.register') }}" class="btn btn-default" >
+					Sign Up
+			</a>
+		</div>
+	</div>
+{% endblock %}
