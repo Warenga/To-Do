@@ -52,7 +52,7 @@ def facebook_login():
 		)
 	return facebook.authorize(callback=callback)
 
-@auth.route('/facebook-login')
+@auth.route('/facebook-login/authorized')
 def facebook_authorized():
 	resp = facebook.authorized_response()
 	if resp in None:

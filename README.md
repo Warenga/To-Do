@@ -6,7 +6,7 @@ A simple to do list application that allows management of tasks.
 Written in <strong>python language</strong> using <strong>flask framework</strong>. The UI is <strong>Jinja2 templates</strong> incorporated in <strong>flask twitter-bootstrap</strong>. The database is <strong>SQLAlchemy</strong> in <strong>SQlite</strong>.
 
 
-Click <a href="http://tolist-staging.herokuapp.com/"> here</a> to view the staged version. Login with twitter.
+Click <a href="http://tolist-staging.herokuapp.com/"> here</a> to view the staged version. Login with twitter or signup.
 
 
 ### What it does
@@ -31,8 +31,7 @@ Click <a href="http://tolist-staging.herokuapp.com/"> here</a> to view the stage
 ----------------------------------------------
 	
 	1. Facebook Login with a callback bug
-	2. New User Login
-	3. Task format
+	2. Task format
 	
 
 ### Run it locally
