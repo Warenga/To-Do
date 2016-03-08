@@ -31,7 +31,6 @@ Click <a href="http://todocards.herokuapp.com/"> here</a> to view the staged ver
 ----------------------------------------------
 	
 	1. Facebook Login with a callback bug
-	2. Task format
 	
 
 ### Run it locally

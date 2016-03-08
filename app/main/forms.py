@@ -20,4 +20,4 @@ class UserForm(Form):
 	username = StringField('Username', validators=[Required(), Length(1, 64)])
 	password = PasswordField('Password', validators=[Required(), EqualTo('password2', message='Passwords must match.')])
 	password2 = PasswordField('Confirm password', validators=[Required()])
-	submit = SubmitField('Register')
+	submit = SubmitField('Submit')

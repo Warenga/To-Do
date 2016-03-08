@@ -35,7 +35,7 @@
 								<form action="{{ url_for('main.delete_task', id = task.id) }}" method="post">
 									<button class="close">x</button>
 								</form>
-								<p>{{ task_form.done }}{{ card.tasks }}</p>
+								<p>{{ task_form.done }}{{ task.task }}</p>
 							{% endfor %}
 							<div class="meta">
 								<span>

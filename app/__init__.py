@@ -5,6 +5,7 @@ from flask.ext.login import LoginManager
 from flask.ext.moment import Moment
 from config import config
 from flask_oauthlib.client import OAuth
+from flask.ext.pagedown import PageDown
 
 
 
@@ -16,6 +17,7 @@ bootstrap = Bootstrap()
 moment = Moment()
 db = SQLAlchemy()
 oauth = OAuth()
+pagedown =  PageDown()
 
 
 def create_app(config_name):
@@ -28,6 +30,7 @@ def create_app(config_name):
 	login_manager.init_app(app)
 	oauth.init_app(app)
 	moment.init_app(app)
+	pagedown.init_app(app)
 
 
 	from main import main as main_blueprint
