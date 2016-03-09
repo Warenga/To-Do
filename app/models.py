@@ -13,6 +13,9 @@ class User(UserMixin, db.Model):
 	password_hash = db.Column(db.String(128))
 	cards = db.relationship('Cards', backref='author', lazy='dynamic')
 
+	def __repr__(self):
+		return '<User {0}>'.format(self.username)
+		
 	@property
 	def password(self):
 		raise AttributeError('password is not a readable attribute')
@@ -24,14 +27,10 @@ class User(UserMixin, db.Model):
 	def verify_password(self, password):
 		return check_password_hash(self.password_hash, password)
 
-	def __str__(self):
-		return str(self.username)
-
+	
 	@login_manager.user_loader
 	def load_user(user_id):
 		return User.query.get(int(user_id))
-
-	__repr__ = __str__
 
 
 
@@ -58,4 +57,3 @@ class Tasks(db.Model):
 	# def is_done(self):
 	# 	if self.task.exists():
 	# 		return not self.tasks.where(Tasks.done == False).exists()
-
