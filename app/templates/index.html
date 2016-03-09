@@ -27,7 +27,7 @@
 								<p> {{ card.card }} </p>
 							</div>
 							<form action="{{ url_for('main.task', id=card.id) }}"method=post style="display:inline-flex;">
-								{{ form1.hidden_tag() }}
+								{{ task_form.hidden_tag() }}
 								{{ task_form.task (class_="u-full-width", placeholder="Add Task", maxlength=128) }}
 								{{ task_form.submit (style="height:30px; margin-left:30px; text-align: top;", class="btn btn-info") }}
 							</form>
@@ -35,7 +35,7 @@
 								<form action="{{ url_for('main.delete_task', id = task.id) }}" method="post">
 									<button class="close">x</button>
 								</form>
-								<p>{{ task_form.done }}{{ task.task }}</p>
+									<input type="checkbox" id="checkbox" onclick=" checked="true" ">{{ task.task}}
 							{% endfor %}
 							<div class="meta">
 								<span>
@@ -53,25 +53,4 @@
 					</div>
 				</div>
 	{% endfor %}
-	<script type="text/javascript">
-
-		function(){
-			var data = $('input[type=checkbox]').map(function() {
-				return this.value;
-			}).get();
-			localStorage['data'] = JSON.stringify(data);
-		}
-
-		function (){
-			if(localStorage&&localStorage["data"]) {
-				var localStoredData=JSON.parse(localStorage["data"]);
-				for(var i=0;i<checkboxes.length;j++){
-					if(checkboxes[i].value==localStoredData[j]){
-						checkboxes[i].checked=true;
-					}
-				}
-			}
-			localStorage.removeItem('data')
-		}
-	</script>
 {% endblock %}

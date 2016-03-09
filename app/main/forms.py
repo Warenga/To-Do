@@ -12,7 +12,6 @@ class CardForm(Form):
 
 class TaskForm(Form):
 	task = StringField('')
-	done = BooleanField('')
 	submit = SubmitField('Submit')
 
 class UserForm(Form):
@@ -21,3 +20,8 @@ class UserForm(Form):
 	password = PasswordField('Password', validators=[Required(), EqualTo('password2', message='Passwords must match.')])
 	password2 = PasswordField('Confirm password', validators=[Required()])
 	submit = SubmitField('Submit')
+
+class CheckForm(Form):
+	done = BooleanField('')
+	submit = SubmitField('Submit')
+

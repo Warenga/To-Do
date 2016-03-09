@@ -3,6 +3,7 @@ from flask import current_app, session, url_for, request, redirect
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask.ext.login import UserMixin
 from datetime import datetime
+import json
 
 class User(UserMixin, db.Model):
 	__tablename__ = 'users'
@@ -46,10 +47,15 @@ class Tasks(db.Model):
 	__tablename__ = 'tasks'
 	id = db.Column(db.Integer, primary_key=True)
 	task = db.Column(db.Text(64))
+	# created_time = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+	# finshed_time = db.Column(db.DateTime, index=True, default=None)
 	done = db.Column(db.Boolean, default=False)
 	card_id = db.Column(db.Integer, db.ForeignKey('cards.id'))
 
-	def __str__(self):
-		return str(self.task)
+	def __repr__(self):
+		return '%r' % self.task
 
-	__repr__ = __str__
+	# def is_done(self):
+	# 	if self.task.exists():
+	# 		return not self.tasks.where(Tasks.done == False).exists()
+

@@ -1,6 +1,6 @@
 from flask import jsonify, render_template, session, redirect, request, url_for, flash
 from . import main
-from .forms import TaskForm, CardForm, UserForm
+from .forms import TaskForm, CardForm, UserForm, CheckForm
 from ..import db
 from ..models import User, Cards, Tasks
 from flask.ext.login import login_required, current_user
@@ -22,7 +22,7 @@ def index():
 		return redirect(url_for('.index'))
 	user = current_user._get_current_object()
 	cards = user.cards.order_by(Cards.card).all()
-	return render_template('index.html', form1=form1, task_form=TaskForm(), user=user,
+	return render_template('index.html', form1=form1, task_form=TaskForm(), user=user, check_form=CheckForm(),
 	 cards=cards)
 
 @main.route('/tasks/<int:id>/', methods=['GET', 'POST'])
@@ -39,8 +39,37 @@ def task(id):
 		flash('You have made a new Task')
 		return redirect(url_for('.index'))
 	tasks = Tasks.query.order_by(Tasks.task).all()
-	return render_template('index.html', task_form=task_form, form1=CardForm(), cards=[card], tasks=tasks)
+	return render_template('index.html', task_form=task_form, form1=CardForm(), check_form=CheckForm(),
+	 cards=[card], tasks=tasks)
 
+# @main.route('/check/<int:id>', methods=['GET', 'POST'])
+# def tick(id):
+# 	"""
+# 		Checks checked box and saves in database
+# 	"""
+# 	task = Tasks.query.get_or_404(id)
+# 	check_form = CheckForm()
+# 	if request.method == 'POST' and check_form.validate():
+# 		check = Tasks(done=check_form.done.data, task=task)
+# 		db.session.add(check)
+# 		db.session.commit()
+# 		check_form.done.data = True
+# 		flash('Task %r done' % check.done)
+# 		return redirect(url_for('.index'))
+# 	checks = Tasks.query.order_by(Tasks.done).all()
+# 	return render_template('index.html', check_form=check_form, form1=CardForm(),
+# 	 task_form=task_form, tasks=[task], checks=tasks)
+
+# @main.route('/check/<int:id>', methods=['POST'])
+# def tick(id):
+# 	task = Tasks.query.get_or_404(id)
+# 	if request.method == 'POST':
+# 		task = Tasks.query.get(request.form.get('id'))
+# 		task.done = True
+# 		db.session.add(post)
+# 		db.session.commit()
+# 		return True
+# 	return False
 
 @main.route('/delete/<int:id>', methods=['GET', 'POST'])
 def delete_card(id):
