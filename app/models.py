@@ -14,7 +14,7 @@ class User(UserMixin, db.Model):
 	cards = db.relationship('Cards', backref='author', lazy='dynamic')
 
 	def __repr__(self):
-		return '<User {0}>'.format(self.username)
+		return '%r' % self.username
 
 	@property
 	def password(self):
