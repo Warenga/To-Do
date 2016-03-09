@@ -15,7 +15,7 @@ class User(UserMixin, db.Model):
 
 	def __repr__(self):
 		return '<User {0}>'.format(self.username)
-		
+
 	@property
 	def password(self):
 		raise AttributeError('password is not a readable attribute')
@@ -27,12 +27,9 @@ class User(UserMixin, db.Model):
 	def verify_password(self, password):
 		return check_password_hash(self.password_hash, password)
 
-	
 	@login_manager.user_loader
 	def load_user(user_id):
 		return User.query.get(int(user_id))
-
-
 
 				
 class Cards(db.Model):

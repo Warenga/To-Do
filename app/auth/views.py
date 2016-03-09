@@ -7,8 +7,8 @@ from flask.ext.login import login_user, logout_user, login_required, current_use
 
 @auth.route('/')
 def welcome():
-	""" Contains Url to the welcomepage """
-	return render_template('auth/welcomepage.html')
+	""" Contains Url to the landingpage """
+	return render_template('auth/landingpage.html')
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
