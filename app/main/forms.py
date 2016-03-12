@@ -22,6 +22,6 @@ class UserForm(Form):
 	submit = SubmitField('Submit')
 
 class CheckForm(Form):
-	done = BooleanField('')
-	submit = SubmitField('Submit')
+	done = SubmitField('Done')
+	
 

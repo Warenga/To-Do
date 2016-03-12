@@ -32,8 +32,9 @@ def task(id):
 	"""
 	card = Cards.query.get_or_404(id)
 	task_form = TaskForm()
-	if request.method == 'POST' and task_form.validate_on_submit():
+	if request.method == 'POST' and task_form.validate():
 		task = Tasks(task=task_form.task.data, card=card)
+		
 		db.session.add(task)
 		db.session.commit()
 		flash('You have made a new Task')
@@ -42,23 +43,22 @@ def task(id):
 	return render_template('index.html', task_form=task_form, form1=CardForm(), check_form=CheckForm(),
 	 cards=[card], tasks=tasks)
 
-# @main.route('/check/<int:id>', methods=['GET', 'POST'])
-# def tick(id):
-# 	"""
-# 		Checks checked box and saves in database
-# 	"""
-# 	task = Tasks.query.get_or_404(id)
-# 	check_form = CheckForm()
-# 	if request.method == 'POST' and check_form.validate():
-# 		check = Tasks(done=check_form.done.data, task=task)
-# 		db.session.add(check)
-# 		db.session.commit()
-# 		check_form.done.data = True
-# 		flash('Task %r done' % check.done)
-# 		return redirect(url_for('.index'))
-# 	checks = Tasks.query.order_by(Tasks.done).all()
-# 	return render_template('index.html', check_form=check_form, form1=CardForm(),
-# 	 task_form=task_form, tasks=[task], checks=tasks)
+@main.route('/check/<int:id>/', methods=['GET', 'POST'])
+def tick(id):
+	"""
+		Checks checked box and saves in database
+	"""
+	task = Tasks.query.get_or_404(id)
+	check_form = CheckForm()
+	if request.method == 'POST' and check_form.validate():
+		# import ipdb; ipdb.set_trace()
+		task.done = True
+		db.session.add(task)
+		db.session.commit()
+		return redirect(url_for('.index'))
+	tasks = Tasks.query.order_by(Tasks.done).all()
+	return render_template('index.html', check_form=check_form, form1=CardForm(),
+	 task_form=TaskForm(), tasks=[task])
 
 # @main.route('/check/<int:id>', methods=['POST'])
 # def tick(id):

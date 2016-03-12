@@ -35,7 +35,11 @@
 								<form action="{{ url_for('main.delete_task', id = task.id) }}" method="post">
 									<button class="close">x</button>
 								</form>
-									<input type="checkbox" id="checkbox" onclick=" checked="true" ">{{ task.task}}
+								<form action="{{ url_for('main.tick', id=task.id) }}" method=post>
+									{{ check_form.hidden_tag() }}
+									{{ check_form.done }}
+									{{ task.task}}
+								</form>
 							{% endfor %}
 							<div class="meta">
 								<span>
