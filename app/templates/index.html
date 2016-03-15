@@ -37,8 +37,11 @@
 								</form>
 								<form action="{{ url_for('main.tick', id=task.id) }}" method=post>
 									{{ check_form.hidden_tag() }}
-									{{ check_form.done }}
-									{{ task.task}}
+									<input class="strikethrough" type="checkbox" value="1">
+										<span>
+											{{ task.task}}
+										</span>
+									</input>
 								</form>
 							{% endfor %}
 							<div class="meta">

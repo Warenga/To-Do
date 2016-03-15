@@ -15,8 +15,9 @@ body {
 	margin-top: 70px;
 	margin-left: 300px;
 }
+
 .strikethrough:checked + span {
-	background-color:#C0C0C0;
+	color: #808080;
     text-decoration: line-through;
 }
 
