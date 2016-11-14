@@ -1,5 +1,6 @@
 # To-Do
 To Do List Application
 
-#####Resent commits are in branch develop
+#####Recent commits are in branch develop
+
 
